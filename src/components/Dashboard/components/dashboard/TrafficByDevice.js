@@ -9,33 +9,39 @@ import {
   colors,
   useTheme,
 } from "@material-ui/core";
-// import LaptopMacIcon from '@material-ui/icons/LaptopMac';
-// import PhoneIcon from '@material-ui/icons/Phone';
-// import TabletIcon from '@material-ui/icons/Tablet';
-
+var temp = [];
+var lable=[];
 const TrafficByDevice = (props) => {
   const theme = useTheme();
 
-  const data = {
+ 
+
+  for (let i in props.data.list) {
+    if (props.data.list[i].dt_txt.substring(11) === "00:00:00") {
+ 
+      temp.push(Math.round(props.data.list[i].main.temp))
+     lable.push(props.data.list[i].dt_txt.substring(0, 10));
+    }
+  }
+
+ var data = {
     datasets: [
       {
-        data: [63, 15, 22,20,30],
+        data: temp,
         backgroundColor: [
           colors.indigo[500],
           colors.red[600],
           colors.orange[600],
           colors.pink[500],
-          colors.purple[500]
+          colors.purple[500],
         ],
         borderWidth: 8,
         borderColor: colors.common.white,
         hoverBorderColor: colors.common.white,
       },
     ],
-    labels: ["Desktop", "Tablet", "Mobile"],
+    labels: lable,
   };
-
-  
 
   const options = {
     animation: true,
@@ -58,8 +64,6 @@ const TrafficByDevice = (props) => {
       titleFontColor: theme.palette.text.primary,
     },
   };
-
-
 
   return (
     <Card {...props}>
