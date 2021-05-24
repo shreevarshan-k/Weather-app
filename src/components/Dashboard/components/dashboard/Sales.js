@@ -1,65 +1,38 @@
-import { Bar  } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import {
   Box,
-  Button,
-  Card,
+ Card,
   CardContent,
   CardHeader,
   Divider,
   // useTheme,
   colors,
 } from "@material-ui/core";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-// import ArrowRightIcon from "@material-ui/icons/ArrowRight";
-import firebaseDb from "../../../../firebase.js";
-import React, { useEffect } from "react";
 
+
+
+import React from "react";
+var temp=[]
 const Sales = (props) => {
   // const [chartdata,setchartdata]=useState({})
-  const sale = {
-    datasets: [{ backgroundColor: "#3f51b5", data: [100], label: "sale" }],
-    labels: ["1 Aug", "2 Aug", "3 Aug", "4 Aug"],
-  };
   const data = {
-    datasets: [
-      {
-        backgroundColor: colors.indigo[500],
-        data: [18],
-        label: "Counter1",
-      },
-      {
-        backgroundColor: colors.grey[200],
-        data: [11],
-        label: "Co2",
-      },
-      {
-        backgroundColor: colors.red[200],
-        data: [10],
-        label: "Co3",
-      },
-    ],
-    labels: ["1 Aug", "2 Aug", "3 Aug", "4 Aug", "5 Aug", "6 Aug"],
+    datasets: [],
+    labels: [],
   };
-  useEffect(() => {
-    var s=20;
-    firebaseDb
-      .database()
-      .ref("Admin/SalesBills/2021-05-19/C01")
-      .on("value", (snapshot) => {
-        for (let i in snapshot.val()) {
-          sale.datasets.push({
-            backgroundColor: "#3f51b5",
-            data: [snapshot.val()[i].Product.Total],
-            label: "sale",
-          });
-       s=10
-        }
-      });
-      data.datasets.push({backgroundColor:"pink",data:[s],label:"Counter 5"})
-
+  for (let i in props.data.list) {
+    
+    
+    if (props.data.list[i].dt_txt.substring(11) === "00:00:00") {
+      temp.push(Math.round(props.data.list[i].main.temp))
+      data.labels.push(props.data.list[i].dt_txt.substring(0, 10));
+      
+    }
+  }
+  data.datasets.push({
+    backgroundColor: colors.indigo[500],
+    data: temp,
+    lable: "temperature",
   });
-
- 
  
 
   const options = {
@@ -72,7 +45,7 @@ const Sales = (props) => {
     scales: {
       xAxes: [
         {
-          barThickness: 10,
+          barThickness: 5,
           maxBarThickness: 10,
           barPercentage: 0.5,
           categoryPercentage: 0.5,
@@ -112,12 +85,7 @@ const Sales = (props) => {
   return (
     <Card {...props}>
       <CardHeader
-        action={
-          <Button endIcon={<ArrowDropDownIcon />} size="small" variant="text">
-            Last 7 days
-          </Button>
-        }
-        title="Latest Sales"
+        title="Temparature of Next Five days"
       />
       <Divider />
       <CardContent>
@@ -138,14 +106,6 @@ const Sales = (props) => {
           p: 2,
         }}
       >
-        {/* <Button
-          color="primary"
-          endIcon={<ArrowRightIcon />}
-          size="small"
-          variant="text"
-        >
-          Overview
-        </Button> */}
       </Box>
     </Card>
   );

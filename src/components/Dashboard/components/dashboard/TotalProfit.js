@@ -22,13 +22,13 @@ const TotalProfit = (props) => (
             gutterBottom
             variant="h6"
           >
-            TOTAL PROFIT
+            Wind Speed
           </Typography>
           <Typography
             color="textPrimary"
-            variant="h3"
+            variant="h5"
           >
-            $23,200
+           {props.data.list[0].wind.speed}
           </Typography>
         </Grid>
         <Grid item>

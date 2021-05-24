@@ -6,22 +6,18 @@ import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
-// import { Redirect } from "react-router-dom";
-//import InboxIcon from "@material-ui/icons/MoveToInbox";
+
 import List from "@material-ui/core/List";
+import Link from "@material-ui/core/Link";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-//import MailIcon from "@material-ui/icons/Mail";
+
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import PopupState, { bindPopover, bindTrigger } from "material-ui-popup-state";
-import { Badge, Popover } from "@material-ui/core";
-import { AccountCircle, HomeOutlined } from "@material-ui/icons";
-import Link from "@material-ui/core/Link";
-
+import { Home } from "@material-ui/icons";
 
 const drawerWidth = 240;
 
@@ -36,10 +32,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBar: {
-    [theme.breakpoints.up("sm")]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
+    zIndex: theme.zIndex.drawer + 1,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -57,16 +50,11 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
 }));
-
-
-
 function ResponsiveDrawer(props) {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
-
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -76,14 +64,13 @@ function ResponsiveDrawer(props) {
     <div>
       <div className={classes.toolbar} />
       <Divider />
-    
       <List>
         <ListItem button component={Link} href="/">
           <ListItemIcon>
-            <HomeOutlined />
+            <Home />
           </ListItemIcon>
           <ListItemText
-            primary="Home"
+            primary="Dashboard"
             style={props.theme ? { color: "white" } : { color: "#262626" }}
           />
         </ListItem>
@@ -108,42 +95,13 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap></Typography>
-         
-          <ListItemIcon style={{ position: "absolute", right: "0.3rem" }}>
-            <PopupState variant="popover">
-              {(popupState) => (
-                <div>
-                  <IconButton>
-                    <Badge
-                      color="secondary"
-                      showZero
-                      {...bindTrigger(popupState)}
-                    >
-                      <AccountCircle style={{ color: "white" }} />
-                    </Badge>
-                  </IconButton>
-                  <Popover
-                    {...bindPopover(popupState)}
-                    anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "center",
-                    }}
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "center",
-                    }}
-                  >
-                   
-                  </Popover>
-                </div>
-              )}
-            </PopupState>
-          </ListItemIcon>
+          <Typography variant="h6" noWrap>
+            FluxGen Task
+          </Typography>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
-      
+        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
             container={container}
@@ -155,7 +113,7 @@ function ResponsiveDrawer(props) {
               paper: classes.drawerPaper,
             }}
             ModalProps={{
-              keepMounted: true, 
+              keepMounted: true, // Better open performance on mobile.
             }}
           >
             {drawer}
@@ -178,6 +136,10 @@ function ResponsiveDrawer(props) {
 }
 
 ResponsiveDrawer.propTypes = {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
   window: PropTypes.func,
 };
 

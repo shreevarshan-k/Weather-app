@@ -1,9 +1,9 @@
 import { Avatar, Card, CardContent, Grid, Typography } from "@material-ui/core";
 import { green } from "@material-ui/core/colors";
 
-import PeopleIcon from "@material-ui/icons/PeopleOutlined";
-import { useEffect, useState } from "react";
-import firebaseDb from "../../../../firebase";
+
+import { WiDaySunny } from "weather-icons-react";
+
 
 const TotalCustomers = (props) => {
  
@@ -18,9 +18,9 @@ const TotalCustomers = (props) => {
             <Typography color="textSecondary" gutterBottom variant="h6">
               Tempature
             </Typography>
-            <Typography color="textPrimary" variant="h3">
+            <Typography color="textPrimary" variant="h5">
               {/* {props.da} */}
-              {console.log(props.data)}
+              {Math.round(props.data.list[0].main.temp)}
             </Typography>
           </Grid>
           <Grid item>
@@ -31,7 +31,7 @@ const TotalCustomers = (props) => {
                 width: 56,
               }}
             >
-              <PeopleIcon />
+              <WiDaySunny  />
             </Avatar>
           </Grid>
         </Grid>

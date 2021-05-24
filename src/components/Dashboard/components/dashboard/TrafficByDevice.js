@@ -1,4 +1,4 @@
-import { Doughnut } from 'react-chartjs-2';
+import { Doughnut } from "react-chartjs-2";
 import {
   Box,
   Card,
@@ -7,8 +7,8 @@ import {
   Divider,
   Typography,
   colors,
-  useTheme
-} from '@material-ui/core';
+  useTheme,
+} from "@material-ui/core";
 // import LaptopMacIcon from '@material-ui/icons/LaptopMac';
 // import PhoneIcon from '@material-ui/icons/Phone';
 // import TabletIcon from '@material-ui/icons/Tablet';
@@ -19,26 +19,30 @@ const TrafficByDevice = (props) => {
   const data = {
     datasets: [
       {
-        data: [63, 15, 22],
+        data: [63, 15, 22,20,30],
         backgroundColor: [
           colors.indigo[500],
           colors.red[600],
-          colors.orange[600]
+          colors.orange[600],
+          colors.pink[500],
+          colors.purple[500]
         ],
         borderWidth: 8,
         borderColor: colors.common.white,
-        hoverBorderColor: colors.common.white
-      }
+        hoverBorderColor: colors.common.white,
+      },
     ],
-    labels: ['Desktop', 'Tablet', 'Mobile']
+    labels: ["Desktop", "Tablet", "Mobile"],
   };
+
+  
 
   const options = {
     animation: true,
     cutoutPercentage: 80,
     layout: { padding: 0 },
     legend: {
-      display: true
+      display: true,
     },
     maintainAspectRatio: false,
     responsive: true,
@@ -50,31 +54,12 @@ const TrafficByDevice = (props) => {
       enabled: true,
       footerFontColor: theme.palette.text.secondary,
       intersect: false,
-      mode: 'index',
-      titleFontColor: theme.palette.text.primary
-    }
+      mode: "index",
+      titleFontColor: theme.palette.text.primary,
+    },
   };
 
-  const devices = [
-    // {
-    //   title: 'Desktop',
-    //   value: 63,
-    //   icon: LaptopMacIcon,
-    //   color: colors.indigo[500]
-    // },
-    // {
-    //   title: 'Tablet',
-    //   value: 15,
-    //   icon: TabletIcon,
-    //   color: colors.red[600]
-    // },
-    // {
-    //   title: 'Mobile',
-    //   value: 23,
-    //   icon: PhoneIcon,
-    //   color: colors.orange[600]
-    // }
-  ];
+
 
   return (
     <Card {...props}>
@@ -84,51 +69,18 @@ const TrafficByDevice = (props) => {
         <Box
           sx={{
             height: 300,
-            position: 'relative'
+            position: "relative",
           }}
         >
-          <Doughnut
-            data={data}
-            options={options}
-          />
+          <Doughnut data={data} options={options} />
         </Box>
         <Box
           sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            pt: 2
+            display: "flex",
+            justifyContent: "center",
+            pt: 2,
           }}
-        >
-          {devices.map(({
-            color,
-            icon: Icon,
-            title,
-            value
-          }) => (
-            <Box
-              key={title}
-              sx={{
-                p: 1,
-                textAlign: 'center'
-              }}
-            >
-              <Icon color="action" />
-              <Typography
-                color="textPrimary"
-                variant="body1"
-              >
-                {title}
-              </Typography>
-              <Typography
-                style={{ color }}
-                variant="h5"
-              >
-                {value}
-                %
-              </Typography>
-            </Box>
-          ))}
-        </Box>
+        ></Box>
       </CardContent>
     </Card>
   );

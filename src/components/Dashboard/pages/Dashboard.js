@@ -14,6 +14,7 @@ import React, { Component } from "react";
 import SearchBar from "material-ui-search-bar";
 import { fetchWeather } from "../../api";
 
+
 const useStyles = (theme) => ({
   content: {
     flexGrow: 1,
@@ -83,22 +84,23 @@ class Dashboard extends Component {
                   <TotalCustomers data={this.state.data} />
                 </Grid>
                 <Grid item lg={3} sm={6} xl={3} xs={12}>
-                  <TasksProgress />
+                  <TasksProgress data={this.state.data}/>
                 </Grid>
                 <Grid item lg={3} sm={6} xl={3} xs={12}>
-                  <TotalProfit sx={{ height: "100%" }} />
+                  <TotalProfit data={this.state.data} />
+                </Grid>
+                
+                <Grid item lg={4} md={6} xl={3} xs={12}>
+                  <LatestProducts sx={{ height: "100%" }} data={this.state.data} />
                 </Grid>
                 <Grid item lg={8} md={12} xl={9} xs={12}>
-                  <Sales />
-                </Grid>
-                <Grid item lg={4} md={6} xl={3} xs={12}>
-                  <TrafficByDevice sx={{ height: "100%" }} />
-                </Grid>
-                <Grid item lg={4} md={6} xl={3} xs={12}>
-                  <LatestProducts sx={{ height: "100%" }} />
+                  <LatestOrders data={this.state.data} />
                 </Grid>
                 <Grid item lg={8} md={12} xl={9} xs={12}>
-                  <LatestOrders />
+                  <Sales data={this.state.data}/>
+                </Grid>
+                <Grid item lg={4} md={6} xl={3} xs={12}>
+                  <TrafficByDevice sx={{ height: "100%" }} data={this.state.data} />
                 </Grid>
               </Grid>
             </Container>

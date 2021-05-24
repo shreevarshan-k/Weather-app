@@ -7,11 +7,9 @@ import {
   Typography
 } from '@material-ui/core';
 // import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import MoneyIcon from '@material-ui/icons/Money';
-import { red } from '@material-ui/core/colors';
-import firebaseDb from '../../../../firebase';
-import { useEffect,useState } from 'react';
 
+import { red } from '@material-ui/core/colors';
+import { LocationCity } from '@material-ui/icons';
 
 
 
@@ -43,10 +41,11 @@ const Budget = (props) => {
           </Typography>
           <Typography
             color="textPrimary"
-            variant="h3"
+            variant="h5"
           >
             { props.city.city.name?
-          props.city.city.name : console.log()}
+          props.city.city.name +
+         "("+ props.city.city.country+")" : console.log()}
            
           </Typography>
         </Grid>
@@ -58,7 +57,7 @@ const Budget = (props) => {
               width: 56
             }}
           >
-            <MoneyIcon />
+            <LocationCity />
           </Avatar>
         </Grid>
       </Grid>
