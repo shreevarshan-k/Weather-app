@@ -1,15 +1,15 @@
 import { Helmet } from "react-helmet";
 import { Box, Container, Grid } from "@material-ui/core";
-import Budget from "../components/dashboard/Budget";
+import CityCard from "../components/dashboard/CityCard";
 import Sidebar from "../../../Sidebar";
 import { withStyles } from "@material-ui/core/styles";
-import LatestOrders from "../components/dashboard/LatestOrders";
-import LatestProducts from "../components/dashboard/LatestProducts";
-import Sales from "../components/dashboard/Sales";
-import TasksProgress from "../components/dashboard/TasksProgress";
-import TotalCustomers from "../components/dashboard/TotalCustomers";
-import TotalProfit from "../components/dashboard/TotalProfit";
-import TrafficByDevice from "../components/dashboard/TrafficByDevice";
+import NextDaysData from "../components/dashboard/NextDaysData";
+import CloudCondition from "../components/dashboard/CloudCondition";
+import TempBarchart from "../components/dashboard/TempBarchart";
+import WeatherCard from "../components/dashboard/WeatherCard";
+import TemperatureCard from "../components/dashboard/TempatureCard";
+import WindCard from "../components/dashboard/WindCard";
+import TempPiechart from "../components/dashboard/TempPiechart";
 import React, { Component } from "react";
 import SearchBar from "material-ui-search-bar";
 import { fetchWeather } from "../../api";
@@ -78,29 +78,29 @@ class Dashboard extends Component {
             <Container maxWidth={false}>
               <Grid container spacing={3}>
                 <Grid item lg={3} sm={6} xl={3} xs={12}>
-                  <Budget city={this.state.data} />
+                  <CityCard city={this.state.data} />
                 </Grid>
                 <Grid item lg={3} sm={6} xl={3} xs={12}>
-                  <TotalCustomers data={this.state.data} />
+                  <TemperatureCard data={this.state.data} />
                 </Grid>
                 <Grid item lg={3} sm={6} xl={3} xs={12}>
-                  <TasksProgress data={this.state.data}/>
+                  <WeatherCard data={this.state.data}/>
                 </Grid>
                 <Grid item lg={3} sm={6} xl={3} xs={12}>
-                  <TotalProfit data={this.state.data} />
+                  <WindCard data={this.state.data} />
                 </Grid>
                 
                 <Grid item lg={4} md={6} xl={3} xs={12}>
-                  <LatestProducts sx={{ height: "100%" }} data={this.state.data} />
+                  <CloudCondition sx={{ height: "100%" }} data={this.state.data} />
                 </Grid>
                 <Grid item lg={8} md={12} xl={9} xs={12}>
-                  <LatestOrders data={this.state.data} />
+                  <NextDaysData data={this.state.data} />
                 </Grid>
                 <Grid item lg={8} md={12} xl={9} xs={12}>
-                  <Sales data={this.state.data}/>
+                  <TempBarchart data={this.state.data}/>
                 </Grid>
                 <Grid item lg={4} md={6} xl={3} xs={12}>
-                  <TrafficByDevice sx={{ height: "100%" }} data={this.state.data} />
+                  <TempPiechart sx={{ height: "100%" }} data={this.state.data} />
                 </Grid>
               </Grid>
             </Container>

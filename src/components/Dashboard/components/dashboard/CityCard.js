@@ -1,15 +1,30 @@
 import {
   Avatar,
+  // Box,
   Card,
   CardContent,
   Grid,
   Typography
 } from '@material-ui/core';
-import { indigo } from '@material-ui/core/colors';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+// import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
-const TotalProfit = (props) => (
-  <Card {...props}>
+import { red } from '@material-ui/core/colors';
+import { LocationCity } from '@material-ui/icons';
+
+
+
+
+const Budget = (props) => {
+
+  
+  return(
+    
+
+  <Card
+    sx={{ height: '100%' }}
+    {...props}
+  >
+   
     <CardContent>
       <Grid
         container
@@ -22,29 +37,34 @@ const TotalProfit = (props) => (
             gutterBottom
             variant="h6"
           >
-            Wind Speed
+            City
           </Typography>
           <Typography
             color="textPrimary"
             variant="h5"
           >
-           {props.data.list[0].wind.speed}
+            { props.city.city.name?
+          props.city.city.name +
+         "("+ props.city.city.country+")" : console.log()}
+           
           </Typography>
         </Grid>
         <Grid item>
           <Avatar
             sx={{
-              backgroundColor: indigo[600],
+              backgroundColor: red[600],
               height: 56,
               width: 56
             }}
           >
-            <AttachMoneyIcon />
+            <LocationCity />
           </Avatar>
         </Grid>
       </Grid>
+      
     </CardContent>
   </Card>
-);
+  )
+    };
 
-export default TotalProfit;
+export default Budget;

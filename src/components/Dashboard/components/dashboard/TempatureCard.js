@@ -2,7 +2,7 @@ import { Avatar, Card, CardContent, Grid, Typography } from "@material-ui/core";
 import { green } from "@material-ui/core/colors";
 
 
-import { WiDaySunny } from "weather-icons-react";
+import { WiCelsius } from "weather-icons-react";
 
 
 const TotalCustomers = (props) => {
@@ -20,7 +20,7 @@ const TotalCustomers = (props) => {
             </Typography>
             <Typography color="textPrimary" variant="h5">
               {/* {props.da} */}
-              {Math.round(props.data.list[0].main.temp)}
+              {Math.round(props.data.list[0].main.temp)}°c
             </Typography>
           </Grid>
           <Grid item>
@@ -31,7 +31,7 @@ const TotalCustomers = (props) => {
                 width: 56,
               }}
             >
-              <WiDaySunny  />
+              <WiCelsius  color="#3f51b5" size={40}/>
             </Avatar>
           </Grid>
         </Grid>

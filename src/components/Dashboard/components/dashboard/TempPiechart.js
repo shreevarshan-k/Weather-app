@@ -5,7 +5,6 @@ import {
   CardContent,
   CardHeader,
   Divider,
-  Typography,
   colors,
   useTheme,
 } from "@material-ui/core";
@@ -67,7 +66,7 @@ const TrafficByDevice = (props) => {
 
   return (
     <Card {...props}>
-      <CardHeader title="Traffic by Device" />
+      <CardHeader title="Temperature Pie-Chart" />
       <Divider />
       <CardContent>
         <Box
