@@ -6,35 +6,21 @@ import { useEffect, useState } from "react";
 import firebaseDb from "../../../../firebase";
 
 const TotalCustomers = (props) => {
-  const [total,settotal]=useState("")
+ 
   
   
-  useEffect(()=>{
-    var totalAmt=0
-    firebaseDb
-    .database()
-    .ref("Admin/Stock").orderByChild("gst").equalTo("NON GST")
-    .on("value", (snapshot) => {
-      if (snapshot.val() != null) {
-        for(let i in snapshot.val()){
-        totalAmt=totalAmt + snapshot.val()[i].Totalamt
-        settotal(totalAmt)
-        }
-      }
-    })
-   
-  
-  },[total]);
+ 
   return (
     <Card {...props}>
       <CardContent>
         <Grid container spacing={3} sx={{ justifyContent: "space-between" }}>
           <Grid item>
             <Typography color="textSecondary" gutterBottom variant="h6">
-              Non-Gst Stock
+              Tempature
             </Typography>
             <Typography color="textPrimary" variant="h3">
-              {total}
+              {/* {props.da} */}
+              {console.log(props.data)}
             </Typography>
           </Grid>
           <Grid item>

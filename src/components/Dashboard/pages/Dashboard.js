@@ -35,7 +35,7 @@ class Dashboard extends Component {
     super(props);
     this.state = {
       city: "",
-      data: {},
+      data: "",
     };
   }
 
@@ -64,6 +64,7 @@ class Dashboard extends Component {
               }
             }}
           />
+          {this.state.data?
 
           <Box
             style={{ marginTop: "10px" }}
@@ -76,10 +77,10 @@ class Dashboard extends Component {
             <Container maxWidth={false}>
               <Grid container spacing={3}>
                 <Grid item lg={3} sm={6} xl={3} xs={12}>
-                  <Budget />
+                  <Budget city={this.state.data} />
                 </Grid>
                 <Grid item lg={3} sm={6} xl={3} xs={12}>
-                  <TotalCustomers />
+                  <TotalCustomers data={this.state.data} />
                 </Grid>
                 <Grid item lg={3} sm={6} xl={3} xs={12}>
                   <TasksProgress />
@@ -101,7 +102,8 @@ class Dashboard extends Component {
                 </Grid>
               </Grid>
             </Container>
-          </Box>
+          </Box>:
+          console.log()}
         </div>
       </>
     );

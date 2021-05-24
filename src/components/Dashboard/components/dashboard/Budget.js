@@ -17,31 +17,16 @@ import { useEffect,useState } from 'react';
 
 
 const Budget = (props) => {
-  const [total,settotal]=useState("")
+
   
-  
-  useEffect(()=>{
-    var totalAmt=0
-    firebaseDb
-    .database()
-    .ref("Admin/Stock").orderByChild("gst").equalTo("GST")
-    .on("value", (snapshot) => {
-      if (snapshot.val() != null) {
-        for(let i in snapshot.val()){
-        totalAmt=totalAmt + snapshot.val()[i].Totalamt
-       settotal(totalAmt)
-        }
-      }
-    })
-   
-  
-  },[total]);
   return(
+    
 
   <Card
     sx={{ height: '100%' }}
     {...props}
   >
+   
     <CardContent>
       <Grid
         container
@@ -54,13 +39,15 @@ const Budget = (props) => {
             gutterBottom
             variant="h6"
           >
-            Gst Stock
+            City
           </Typography>
           <Typography
             color="textPrimary"
             variant="h3"
           >
-           {total}
+            { props.city.city.name?
+          props.city.city.name : console.log()}
+           
           </Typography>
         </Grid>
         <Grid item>
