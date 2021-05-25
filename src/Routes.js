@@ -4,7 +4,7 @@ import Dashboard from './components/Dashboard/pages/Dashboard';
 
 function Routes() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Weather-app">
      
       <Route path="/" exact component={Dashboard}/>
       
